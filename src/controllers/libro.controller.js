@@ -26,10 +26,10 @@ export const readAllLibro=async(req,res)=>{
 export const agregarLibro = async (req,res)=>{
 
   try {
-    const titulo = (req.body.titulo);
-    const autor = (req.body.autor);
+    const titulo = req.body.titulo;
+    const autor = req.body.autor;
     const paginas = parseInt(req.body.paginas);
-    const editor = (req.body.editor);
+    const editor= req.body.editor;
     const ideditorial = parseInt(req.body.ideditorial);
     pool.query(
       "INSERT INTO libro (titulo, autor, paginas, editor, ideditorial) VALUES(?,?,?,?,?); ",
@@ -101,8 +101,8 @@ export const editarLibro = async (req,res)=>{
     const ideditorial = parseInt(req.body.ideditorial);
     
     pool.query(
-      "update productos SET titulo=?, autor=? , paginas=? , editor=? , ideditorial=? WHERE idlibro=?; ",
-      [titulo, autor ,paginas , editor, ideditorial, id],
+      "update libro SET titulo=?, autor=? , paginas=? , editor=? , ideditorial=? WHERE idlibro=?; ",
+      [titulo, autor, paginas, editor, ideditorial, id],
       function (err, result) {
         try {
           return res.status(200).json(result);
