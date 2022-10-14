@@ -7,7 +7,7 @@ export const readAllLibro=async(req,res)=>{
   try {
     const id = parseInt(req.params.id);
     pool.query(
-      "select * from libro",
+      "select l.idlibro, l.titulo, l.autor, l.paginas, e.nombre from libro l join editorial e on e.ideditorial = l.ideditorial;",
       [id],
       function (err, result) {
         console.log(result);
